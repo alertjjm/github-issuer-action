@@ -9,10 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - uses: rishabhgupta/git-action-issue@v2
         id: Issue
         with:
             token: ${{ secrets.ACTION_TOKEN }}
-            title: $(date +'%Y-%m-%d') 주간 보고
+            title: ${{ steps.date.outputs.date }} 주간 보고
             body: 댓글로 한 일 적어주세요~
             assignees: 'alertjjm'
