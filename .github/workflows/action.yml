@@ -18,3 +18,15 @@ jobs:
             assignees: 'alertjjm'
       - run: |
           echo ${{ steps.issue.outputs.issue }}
+      - uses: devellany/send-mailer@v1.0.2
+        with:
+          host: smtp.google.com
+          port: 465
+          account: ${{secrets.ACCOUNT}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: Github Action
+          from: ${{secrets.MAIL_ADDRESS}}
+          to: sdr2936@gmail.com
+          subject: mail title.
+          body: ${{ steps.issue.outputs.issue }}
+          contentType: text/plain
