@@ -1,12 +1,9 @@
 name: Issuer
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+  schedule:
+    - cron: '0 17 * * 3'
 jobs:
-  build:
+  cron:
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
